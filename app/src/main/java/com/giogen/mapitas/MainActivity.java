@@ -189,10 +189,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         map.addMarker(new MarkerOptions()
                 .position(house)
                 .title("Your House"));
-        
+
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(me);
 
-        CameraPosition cameraPosition = CameraPosition.builder().target(new LatLng(20.139295, -101.150777))
+        CameraPosition cameraPosition = CameraPosition.builder().target(me)
                 .zoom(15)
                 .tilt(67)
                 .bearing(90).build();
