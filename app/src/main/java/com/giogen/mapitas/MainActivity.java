@@ -172,13 +172,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             return;
         }
-        fusedLocationClient.getLastLocation()
+      fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
 
                         if (location != null) {
                             me = new LatLng(location.getLatitude(),location.getLongitude());
+                            map.addMarker(new MarkerOptions()
+                                    .position(me)
+                                    .title("You"));
+                            CameraPosition cameraPosition = CameraPosition.builder().target(me)
+                                    .zoom(15)
+                                    .tilt(67)
+                                    .bearing(90).build();
+                            //  cameraUpdate = CameraUpdateFactory();
+                            //  map.animateCamera(cameraUpdate);
+                            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
                         }
                     }
                 });
@@ -190,18 +201,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .position(house)
                 .title("Your House"));
 
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(me);
 
-        CameraPosition cameraPosition = CameraPosition.builder().target(me)
-                .zoom(15)
-                .tilt(67)
-                .bearing(90).build();
-      //  cameraUpdate = CameraUpdateFactory();
-      //  map.animateCamera(cameraUpdate);
-        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        map.addMarker(new MarkerOptions()
-                .position(me)
-                .title("You"));
+
+
 
 
 
